@@ -31,14 +31,9 @@ type PropsTypes = {
 
 export default function MainPage(props: PropsTypes) {
   const { notes, availableTags } = props;
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState<string>("");
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
-
-  const handleSubmit = (e) => {
-    console.log(e.target);
-  };
 
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
@@ -68,9 +63,6 @@ export default function MainPage(props: PropsTypes) {
                 Yeni Not Oluştur
               </Button>
             </Link>
-            {/* <Button variant="outline-primary" className="mb-1" size="sm">
-              Etiketi Düzenle
-            </Button> */}
           </Stack>
         </Stack>
         {/* form field */}
@@ -167,7 +159,7 @@ export default function MainPage(props: PropsTypes) {
                         variant="outline-primary"
                         className="mt-2 float-end "
                       >
-                        Card Detail
+                        Detaylar
                       </Button>
                     </Link>
                   </Card.Body>

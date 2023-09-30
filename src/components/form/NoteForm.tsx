@@ -11,7 +11,7 @@ import { NoteDataType, Tag } from "../../Types";
 import { NewNotePropsTypes } from "../../pages/new-note";
 import { v4 as uuidv4 } from "uuid";
 import { useNavigate } from "react-router-dom";
-// import MarkdownEditor from "@uiw/react-markdown-editor";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 
 interface ValidationSchema {
   [key: string]: yup.StringSchema<string>;
@@ -33,7 +33,7 @@ function NoteForm(props: NewNotePropsTypes) {
 
   // tags added for  initial value
   const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
-  // const [markdownArea, setMarkdownArea] = useState(markdown);
+  const [markdownArea, setMarkdownArea] = useState(markdown);
   const navigate = useNavigate();
   console.log(
     "🚀 ~ file: NoteForm.tsx:27 ~ NoteForm ~ selectedTags:",
@@ -48,20 +48,17 @@ function NoteForm(props: NewNotePropsTypes) {
 
   const schema: ValidationSchema = {
     title: yup.string().required("Title is required"),
-    // tags: yup
-    //   .array()
-    //   .of(yup.string()) // Etiketlerin birer dize olduğunu belirtiyoruz
-    //   .min(1, "En az bir etiket girmelisiniz.")
-    //   .required("Bu alan zorunludur."),
-
-    markdown: yup.string().required("Text is required"),
   };
 
   const formik = useFormik({
     initialValues,
     validationSchema: yup.object().shape(schema),
     onSubmit: (values, { setSubmitting }) => {
-      const updatedValues = { ...values, tags: [...selectedTags] };
+      const updatedValues = {
+        ...values,
+        tags: [...selectedTags],
+        markdown: markdownArea,
+      };
       onSubmit(updatedValues);
       console.log("values", updatedValues);
       console.log("selectedTags", selectedTags);
@@ -145,7 +142,7 @@ function NoteForm(props: NewNotePropsTypes) {
           )}
         </Form.Group>
       </Row>
-      <Row className="mb-3">
+      {/* <Row className="mb-3">
         <Form.Group
           as={Col}
           md="12"
@@ -171,13 +168,19 @@ function NoteForm(props: NewNotePropsTypes) {
             {formik.errors.markdown}
           </Form.Control.Feedback>
         </Form.Group>
+      </Row> */}
+      <Row>
+        <Form.Group>
+          <Form.Label>İçerik</Form.Label>
+          <MarkdownEditor
+            value={markdown}
+            height="200px"
+            // onChange={(value, viewUpdate) => setMarkdownArea(value)}
+            onChange={(value) => setMarkdownArea(value)}
+          />
+        </Form.Group>
       </Row>
-      {/* <MarkdownEditor
-        value={markdown}
-        height="200px"
-        onChange={(value, viewUpdate) => setMarkdownArea(value)}
-      /> */}
-      <Stack direction="horizontal" gap={2} className="float-end">
+      <Stack direction="horizontal" gap={2} className="float-end my-2">
         <Button type="submit">Kaydet</Button>
         <Button onClick={() => navigate(-1)} type="button" variant="secondary">
           İptal
