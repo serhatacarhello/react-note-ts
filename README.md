@@ -33,6 +33,11 @@ Uygulamayı başlatmak için aşağıdaki komutu çalıştırın:
 
 `npm run dev`
 
+[Uygulamayı buradan inceleyebilirsiniz.](https://react-note-ts.vercel.app/)
+
+
 ## App gif
 
 ![note-app.gif](./public/note-app.gif)
+
+
