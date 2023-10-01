@@ -1,8 +1,9 @@
 import { Badge, Button, Card, Container, Stack } from "react-bootstrap";
 import { useNote } from "../../utils/UseNote";
-import Header from "../../components/Header";
+import Header from "../../components/Heading";
 import { useNavigate } from "react-router-dom";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type PropsTypes = {
   deleteNote: (id: string) => void;
@@ -58,7 +59,7 @@ export default function NoteDetail(props: PropsTypes) {
                   Tag="h3"
                   design="fw-lighter fs-5 font-monospace"
                 />
-                <Markdown>{note.markdown}</Markdown>
+                <Markdown remarkPlugins={[remarkGfm]}>{note.markdown}</Markdown>
               </Stack>
             </Card.Text>
           </Card.Body>

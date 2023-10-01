@@ -8,13 +8,15 @@ import {
   Row,
   Stack,
 } from "react-bootstrap";
-import Header from "../../components/Header";
+import Header from "../../components/Heading";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
 
 import ReactSelect from "react-select";
-import { useNavigate } from "react-router-dom";
 import { Tag } from "../../Types";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 type NoteType = {
   tags: Tag[];
@@ -79,6 +81,7 @@ export default function MainPage(props: PropsTypes) {
                 type="text"
                 name="title"
                 required
+                placeholder="* Javascript ..."
                 onChange={(e) => setTitle(e.target.value)}
               />
             </Form.Group>
@@ -88,11 +91,11 @@ export default function MainPage(props: PropsTypes) {
               controlId="validationFormik102"
               className="position-relative"
             >
-              <Form.Label>Etiketler</Form.Label>
+              <Form.Label>Etikete göre ara</Form.Label>
 
               <ReactSelect
                 isMulti
-                placeholder={"Etiket ekleyiniz..."}
+                placeholder={"Etiket seçiniz..."}
                 options={availableTags.map((tag) => ({
                   label: tag.label,
                   value: tag.id,
@@ -127,10 +130,10 @@ export default function MainPage(props: PropsTypes) {
         <Container>
           <Row>
             {filteredNotes.map((note) => (
-              <Col key={note.id} lg={4} md={6} sm={8} xs={12} className="mb-3">
+              <Col key={note.id} lg={4} md={6} sm={8} xs={12} className="mb-2">
                 <Card
-                  className="bg-body-tertiary text-muted"
-                  style={{ width: "18rem" }}
+                  className="bg-body-tertiary text-muted w-100"
+                  // style={{ width: "18rem" }}
                 >
                   <Card.Body>
                     <Card.Title className="text-capitalize">
@@ -139,7 +142,16 @@ export default function MainPage(props: PropsTypes) {
                     {/* <Card.Subtitle className="mb-2 text-muted">
                       Card Subtitle{" "}
                     </Card.Subtitle> */}
-                    <Card.Text>{note.markdown}</Card.Text>
+                    <Card.Text className="bg-tertiary">
+                      <Markdown
+                        remarkPlugins={[remarkGfm]}
+                        rehypePlugins={[rehypeRaw]}
+                      >
+                        {note.markdown.length > 50
+                          ? note.markdown.substring(0, 50) + " " + "..."
+                          : note.markdown}
+                      </Markdown>
+                    </Card.Text>
                     <Stack
                       direction="horizontal"
                       className="flex-wrap gap-2 my-1"
