@@ -1,27 +1,38 @@
-# React + TypeScript + Vite
+# Not Uygulaması
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu, React ve TypeScript kullanarak oluşturduğunuz bir not uygulamasının açıklama metnidir. Bu uygulama, notları oluşturmanıza, düzenlemenize ve görüntülemenize yardımcı olur.
 
-Currently, two official plugins are available:
+## Bağımlılıklar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Bu projede kullanılan başlıca bağımlılıklar:
 
-## Expanding the ESLint configuration
+- `@types/uuid`: UUID ile ilgili TypeScript tür tanımları.
+- `@uiw/react-markdown-editor`: Markdown düzenleyici bileşeni.
+- `bootstrap`: UI bileşenleri için kullanılan bir CSS çerçevesi.
+- `formik`: Form yönetimi için.
+- `react`: React kütüphanesi.
+- `react-bootstrap`: React uygulamaları için Bootstrap bileşenleri.
+- `react-dom`: React uygulamasını DOM'a monte etmek için.
+- `react-markdown`: Markdown içeriğini HTML'e dönüştürmek için.
+- `react-router-dom`: React tabanlı uygulama için yönlendirme.
+- `react-select`: Seçim öğeleri için kullanılır.
+- `rehype-raw`: Markdown içeriğindeki raw HTML için kullanılır.
+- `remark-gfm`: GitHub-flavored Markdown (GFM) desteği için.
+- `uuid`: UUID oluşturmak için.
+- `yup`: Şema tabanlı form doğrulama için.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Kurulum
 
-- Configure the top-level `parserOptions` property like this:
+1. Projeyi klonlayın: `git clone https://github.com/serhatacarhello/react-note-ts.git`
+2. Proje dizinine gidin: `cd react-note-ts`
+3. Bağımlılıkları yüklemek için aşağıdaki komutu çalıştırın: `npm install` veya `yarn install`
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+## Kullanım
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Uygulamayı başlatmak için aşağıdaki komutu çalıştırın:
+
+`npm run dev`
+
+## App gif
+
+![note-app.gif](<img src="note-app.gif" alt="note-app image"/>)
