@@ -35,4 +35,4 @@ Uygulamayı başlatmak için aşağıdaki komutu çalıştırın:
 
 ## App gif
 
-![note-app.gif](<img src="note-app.gif" alt="note-app image"/>)
+![note-app.gif](./public/note-app.gif)
